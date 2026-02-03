@@ -1,0 +1,5 @@
+{
+  "name": "Sling x Airtable Sync Bridge",
+  "description": "A professional integration dashboard to bridge Airtable records with Sling scheduling. Manage API keys, monitor sync status, and manually trigger shift updates with real-time validation.",
+  "requestFramePermissions": []
+}
