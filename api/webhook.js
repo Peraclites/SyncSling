@@ -1,4 +1,4 @@
-import { createSlingShift } from "../services/createSlingShift";
+import { createSlingShift } from "../services/slingService";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
