@@ -1,13 +1,11 @@
-import { createSlingShift } from "../../lib/createSlingShift";
+import { createSlingShift } from "../services/createSlingShift";
 
 export default async function handler(req, res) {
-  // Solo aceptar POST
   if (req.method !== "POST") {
     return res.status(200).json({ message: "Webhook endpoint OK" });
   }
 
   try {
-    // Validar clave bridge_key
     const key = req.query.bridge_key;
     if (!key || key !== process.env.BRIDGE_KEY) {
       console.error("Clave inválida:", key);
@@ -17,13 +15,11 @@ export default async function handler(req, res) {
     const body = req.body;
     console.log("Webhook recibido:", body);
 
-    // Configuración de Sling desde variables de entorno
     const config = {
       apiKey: process.env.SLING_API_KEY,
       orgId: process.env.SLING_ORG_ID
     };
 
-    // Llamar a Sling
     console.log("Llamando a createSlingShift...");
     const slingResponse = await createSlingShift(config, body);
 
