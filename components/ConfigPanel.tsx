@@ -45,7 +45,7 @@ const ConfigPanel: React.FC<Props> = ({ config, setConfig }) => {
               />
               <p className="mt-2 text-xs text-slate-400 flex items-center">
                 <HelpCircle className="w-3 h-3 mr-1" />
-                Found in Sling > Settings > API
+                Found in Sling &gt; Settings &gt; API
               </p>
             </div>
 
