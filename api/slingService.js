@@ -3,8 +3,22 @@ export async function createSlingShift(config, data) {
     return { error: 'Sling Configuration missing.' };
   }
 
-  const startTime = `${data.date}T${data.start}:00Z`;
-  const endTime = `${data.date}T${data.end}:00Z`;
+  // Normalizar horas a HH:MM:SS
+  const normalizeTime = (t) => {
+    if (!t) return null;
+    const [h, m] = t.split(":");
+    return `${h.padStart(2, "0")}:${m.padStart(2, "0")}:00`;
+  };
+
+  const start = normalizeTime(data.start);
+  const end = normalizeTime(data.end);
+
+  if (!start || !end) {
+    return { error: "Missing start or end time" };
+  }
+
+  const startTime = `${data.date}T${start}Z`;
+  const endTime = `${data.date}T${end}Z`;
 
   const body = {
     dt_start: startTime,
@@ -31,14 +45,12 @@ export async function createSlingShift(config, data) {
     console.log("Sling response:", result);
 
     if (!response.ok) {
-      console.error("Sling error:", result);
       return { error: "Sling API error", details: result };
     }
 
     return result;
 
   } catch (error) {
-    console.error("Network or code error:", error);
     return { error: error.message || 'Network error connecting to Sling' };
   }
 }
