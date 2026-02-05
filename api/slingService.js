@@ -32,14 +32,14 @@ export async function createSlingShift(config, data) {
   try {
     console.log('Pushing to Sling:', body);
 
-    const response = await fetch(`https://api.getsling.com/v1/shifts`, {
-      method: 'POST',
-      headers: {
-        'Authorization': config.apiKey,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    });
+    const response = await fetch(`https://api.getsling.com/v1/${config.orgId}/shifts`, {
+  method: 'POST',
+  headers: {
+    'Authorization': config.apiKey,
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(body),
+});
 
     const result = await response.json();
     console.log("Sling response:", result);
