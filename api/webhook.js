@@ -1,6 +1,4 @@
-export const config = {
-  runtime: "nodejs"
-};
+
 import { createSlingShift } from "./slingService.js";
 
 // ⬇️ Añade esta función aquí, justo debajo del import

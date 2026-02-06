@@ -1,6 +1,4 @@
-export const config = {
-  runtime: "nodejs"
-};
+
 export async function createSlingShift(config, data) {
   if (!config.apiKey || !config.orgId) {
     return { error: 'Sling Configuration missing.' };
