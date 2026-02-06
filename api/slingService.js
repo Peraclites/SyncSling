@@ -21,7 +21,7 @@ export async function createSlingShift(config, data) {
   const endTime = `${data.date}T${end}Z`;
 
   const body = {
-  summary: data.summary || "Turno generado automáticamente",
+  summary: data.notes || data.summary || "Turno generado automáticamente",
   location: { id: parseInt(data.locationId?.[0] || "0") },
   position: { id: parseInt(data.positionId?.[0] || "0") },
   users: [{ id: parseInt(data.employeeId?.[0] || "0") }],
