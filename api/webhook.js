@@ -40,7 +40,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const key = req.query.bridge_key;
+    const key = req.query.key;
     if (!key || key !== process.env.BRIDGE_KEY) {
       console.error("Clave inválida:", key);
       return res.status(401).json({ error: "Unauthorized" });
