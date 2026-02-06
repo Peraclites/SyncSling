@@ -1,6 +1,9 @@
 // /api/errors.js
 
 // Reutilizamos el log global de errores
+export const config = {
+  runtime: "nodejs"
+};
 let errorLog = global.errorLog || [];
 global.errorLog = errorLog;
 

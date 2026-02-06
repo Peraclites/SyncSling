@@ -1,6 +1,9 @@
 // /api/pending.js
 
 // Usamos la misma cola global creada en /api/queue.js
+export const config = {
+  runtime: "nodejs"
+};
 let pendingQueue = global.pendingQueue || [];
 global.pendingQueue = pendingQueue;
 

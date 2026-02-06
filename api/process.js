@@ -1,4 +1,7 @@
 // /api/process.js
+export const config = {
+  runtime: "nodejs"
+};
 import { createSlingShift } from "./slingService.js";
 
 // Reutilizamos la cola global creada en /api/queue.js

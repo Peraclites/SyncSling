@@ -1,6 +1,9 @@
 // /api/queue.js
 
 // Cola temporal en memoria (más adelante la moveremos a KV)
+export const config = {
+  runtime: "nodejs"
+};
 let pendingQueue = global.pendingQueue || [];
 global.pendingQueue = pendingQueue;
 
