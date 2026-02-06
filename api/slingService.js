@@ -17,21 +17,9 @@ export async function createSlingShift(config, data) {
     return { error: "Missing start or end time" };
   }
 
-  // Obtener offset automático según la fecha (CET/CEST)
-  function getOffset(dateString) {
-    const d = new Date(`${dateString}T00:00:00`);
-    const offsetMinutes = -d.getTimezoneOffset(); // 60 o 120
-    const sign = offsetMinutes >= 0 ? "+" : "-";
-    const hours = String(Math.floor(Math.abs(offsetMinutes) / 60)).padStart(2, "0");
-    const minutes = String(Math.abs(offsetMinutes) % 60).padStart(2, "0");
-    return `${sign}${hours}:${minutes}`;
-  }
-
-  const offset = getOffset(data.date);
-
-  // Construir fecha con offset correcto
-  const startTime = `${data.date}T${start}${offset}`;
-  const endTime = `${data.date}T${end}${offset}`;
+  // Airtable ya envía la hora en la zona local → NO añadir Z ni offset
+  const startTime = `${data.date}T${start}`;
+  const endTime = `${data.date}T${end}`;
 
   // Construcción del cuerpo para Sling
   const body = {
