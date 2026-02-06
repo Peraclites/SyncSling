@@ -21,13 +21,14 @@ export async function createSlingShift(config, data) {
   const endTime = `${data.date}T${end}Z`;
 
   const body = {
-    dt_start: startTime,
-    dt_end: endTime,
-    user: { id: parseInt(data.employeeId?.[0] || "0") },
-    location: { id: parseInt(data.locationId?.[0] || "0") },
-    position: { id: parseInt(data.positionId?.[0] || "0") },
-    notes: data.notes || '',
-  };
+  summary: data.summary || "Turno generado automáticamente",
+  location: { id: parseInt(data.locationId?.[0] || "0") },
+  position: { id: parseInt(data.positionId?.[0] || "0") },
+  users: [{ id: parseInt(data.employeeId?.[0] || "0") }],
+  dtstart: startTime,
+  dtend: endTime,
+  notes: data.notes || ''
+};
 
   try {
     console.log('Pushing to Sling:', body);
